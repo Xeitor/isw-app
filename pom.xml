@@ -817,13 +817,13 @@
                         <artifactId>frontend-maven-plugin</artifactId>
                         <executions>
                             <execution>
-                                <id>install node and npm holaaa ${node.version}</id>
+                                <id>install node and npm</id>
                                 <goals>
-                                    <goal>install-node-and-npm ${node.version}</goal>
+                                    <goal>install-node-and-npm</goal>
                                 </goals>
                                 <configuration>
-                                    <nodeVersion>v9.11.1</nodeVersion>
-                                    <npmVersion>${npm.version}</npmVersion>
+                                    <nodeVersion>v14.16.0</nodeVersion>
+                                    <npmVersion>7.8.0</npmVersion>
                                 </configuration>
                             </execution>
                             <execution>
