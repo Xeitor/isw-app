@@ -819,10 +819,10 @@
                             <execution>
                                 <id>install node and npm holaaa ${node.version}</id>
                                 <goals>
-                                    <goal>install-node-and-npm</goal>
+                                    <goal>install-node-and-npm ${node.version}</goal>
                                 </goals>
                                 <configuration>
-                                    <nodeVersion>${node.version}</nodeVersion>
+                                    <nodeVersion>v9.11.1</nodeVersion>
                                     <npmVersion>${npm.version}</npmVersion>
                                 </configuration>
                             </execution>
