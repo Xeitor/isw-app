@@ -4,18 +4,15 @@ node {
     stage('checkout') {
         checkout scm
     }
-    environment {
-        HOME = '.'
-    }
 
-    docker.image('jhipster/jhipster:v7.0.1').inside('-e MAVEN_OPTS="-Duser.home=."') {
+    docker.image('jhipster/jhipster:v7.0.1').inside('-e MAVEN_OPTS="-Duser.home=./"') {
         stage('check java') {
             sh "java -version"
         }
 
         stage('clean') {
             sh "chmod +x mvnw"
-            sh "./mvnw -X -ntp clean -P-webapp"
+            sh "./mvnw -ntp clean -P-webapp"
         }
         stage('nohttp') {
             sh "./mvnw -ntp checkstyle:check"
@@ -26,7 +23,7 @@ node {
         }
 
         stage('npm install') {
-            sh "sudo npm install -g --unsafe-perm"
+            sh "./mvnw -X -ntp com.github.eirslett:frontend-maven-plugin:npm"
         }
         stage('backend tests') {
             try {
@@ -40,9 +37,8 @@ node {
 
         stage('frontend tests') {
             try {
-               sh "whoami"
-               sh "sudo npm install -g --unsafe-perm"
-               sh "sudo npm test"
+               sh "npm install"
+               sh "npm test"
             } catch(err) {
                 throw err
             } finally {
