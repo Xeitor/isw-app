@@ -37,6 +37,7 @@ node {
 
         stage('frontend tests') {
             try {
+               sh "whoami"
                sh "sudo npm install -g --unsafe-perm"
                sh "sudo npm test"
             } catch(err) {
