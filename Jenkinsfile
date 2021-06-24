@@ -5,18 +5,7 @@ node {
         checkout scm
     }
 
-    docker.image('jhipster/jhipster:v7.0.1').inside{
-        withEnv([
-        '-u root:root -e MAVEN_OPTS="-Duser.home=./"',
-        /* Override the npm cache directory to avoid: EACCES: permission denied, mkdir '/.npm' */
-        'npm_config_cache=npm-cache',
-        /* set home to our current directory because other bower
-        * nonsense breaks with HOME=/, e.g.:
-        * EACCES: permission denied, mkdir '/.config'
-        */
-        'HOME=.',
-    ])
-        {
+    docker.image('jhipster/jhipster:v7.0.1').inside('-e MAVEN_OPTS="-Duser.home=./"') {
         stage('check java') {
             sh "java -version"
         }
@@ -61,6 +50,6 @@ node {
         stage('packaging') {
             sh "./mvnw -ntp verify -P-webapp -Pprod -DskipTests"
             archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
-        }}
+        }
     }
 }
