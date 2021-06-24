@@ -7,7 +7,7 @@ node {
 
     docker.image('jhipster/jhipster:v7.0.1').inside{
         withEnv([
-        '-u root:root -e MAVEN_OPTS="-Duser.home=./"'
+        '-u root:root -e MAVEN_OPTS="-Duser.home=./"',
         /* Override the npm cache directory to avoid: EACCES: permission denied, mkdir '/.npm' */
         'npm_config_cache=npm-cache',
         /* set home to our current directory because other bower
