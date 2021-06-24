@@ -37,8 +37,8 @@ node {
 
         stage('frontend tests') {
             try {
-               sh "sudo npm install -g --unsafe-perm"
-               sh "sudo npm test"
+               sh "npm install"
+               sh "npm test"
             } catch(err) {
                 throw err
             } finally {
