@@ -26,7 +26,7 @@ node {
         }
 
         stage('npm install') {
-            sh "./mvnw -X -ntp com.github.eirslett:frontend-maven-plugin:npm"
+            sh "sudo npm install -g --unsafe-perm"
         }
         stage('backend tests') {
             try {
