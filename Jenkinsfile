@@ -5,7 +5,7 @@ node {
         checkout scm
     }
 
-    docker.image('jhipster/jhipster:v7.0.1').inside('-u root -e MAVEN_OPTS="-Duser.home=./"') {
+    docker.image('jhipster/jhipster:v7.0.1').inside('-u root:root -e MAVEN_OPTS="-Duser.home=./"') {
         stage('check java') {
             sh "java -version"
         }
@@ -37,8 +37,8 @@ node {
 
         stage('frontend tests') {
             try {
-               sh "npm install"
-               sh "npm test"
+               sh "sudo npm install -g --unsafe-perm"
+               sh "sudo npm test"
             } catch(err) {
                 throw err
             } finally {
