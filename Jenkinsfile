@@ -8,7 +8,7 @@ node {
         HOME = '.'
     }
 
-    docker.image('jhipster/jhipster:v7.0.1').inside('-u jenkins -e MAVEN_OPTS="-Duser.home=."') {
+    docker.image('jhipster/jhipster:v7.0.1').inside('-e MAVEN_OPTS="-Duser.home=."') {
         stage('check java') {
             sh "java -version"
         }
