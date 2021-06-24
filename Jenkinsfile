@@ -4,6 +4,9 @@ node {
     stage('checkout') {
         checkout scm
     }
+        environment {
+        HOME = '.'
+    }
 
     docker.image('jhipster/jhipster:v7.0.1').inside('-u root:root -e MAVEN_OPTS="-Duser.home=./"') {
         stage('check java') {
